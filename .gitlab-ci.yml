@@ -1,0 +1,15 @@
+#Include Base CI/CD template project 
+# Dont remove this include
+include:
+  - project: 'ops-templates/ci-cd-workflows/rok8s-scripts/main-pipeline'
+    ref: master 
+    file: 'Main.gitlab-ci.yml'
+
+variables:
+  extends: .base_variables
+
+  #TYPE OF PIPELINE 
+  # docker OR jib-maven OR jib-gradle
+  PIPELINETYPE: ""
+  PROJECT: demo
+  IMG_REPO: ""

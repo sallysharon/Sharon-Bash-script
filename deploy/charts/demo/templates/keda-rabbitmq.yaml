@@ -1,0 +1,21 @@
+{{- if .Values.kedarabbitmq.enabled -}}
+apiVersion: keda.k8s.io/v1alpha1
+kind: ScaledObject
+metadata:
+  name: rabbitmq-scaledobject-{{ include "demo.fullname" . }}
+  labels:
+    {{- include "demo.labels" . | nindent 4 }}
+spec:
+  scaleTargetRef:
+    deploymentName: {{ include "demo.fullname" . }}
+  minReplicaCount: {{ .Values.kedarabbitmq.minReplicaCount }}
+  pollingInterval: {{ .Values.kedarabbitmq.pollingInterval }}   # Optional. Default: 30 seconds
+  cooldownPeriod: {{ .Values.kedarabbitmq.cooldownPeriod }}   # Optional. Default: 300 seconds
+  maxReplicaCount: {{ .Values.kedarabbitmq.maxReplicaCount }}  # Optional. Default: 100
+  triggers:
+  - type: rabbitmq
+    metadata:
+      host: {{ .Values.kedarabbitmq.host }}
+      queueName: "{{ .Values.kedarabbitmq.queueName }}"
+      queueLength: "{{ .Values.kedarabbitmq.queueLength }}"
+{{- end }}

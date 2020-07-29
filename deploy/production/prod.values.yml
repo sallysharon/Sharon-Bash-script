@@ -1,0 +1,40 @@
+replicaCount: 1
+
+image:
+  pullSecrets: []
+
+service:
+  type: ClusterIP
+  port: 8080
+
+#Read more about this at the link below:
+#https://www.getambassador.io/docs/1.5/topics/using/timeouts/
+ambassador:
+  enabled: "true"
+  hostname: cellulant.co.ke
+  prefix: /
+  timeoutMs: 3000 
+  connectTimeoutms: 30000
+  idleTimeoutms: 3000
+
+# A map of additional environment variables
+extraVars: {}
+  # test1: "test2"
+  # APP_ENV: "development"
+  # COUNTRY_CODE: "GEN"
+  # DATASOURCE_URL: "jdbc:mysql://devmysql:3306/forex" 
+  # DATASOURCE_USERNAME: "tingg"
+  # DATASOURCE_PASSWORD: "tingg"
+  # CAS_URL: ""
+  # DEFAULT_CLIENT_CODE: "ADMIN"
+  # DEFAULT_CURRENCY_CODE: "USD"
+  # - name: SPRING_DATASOURCE_USERNAME
+  # valueFrom:
+  #   secretKeyRef:
+  #     key: database-user
+  #     name: tingg-bulkpurchase-credentials
+  # - name: SPRING_DATASOURCE_PASSWORD
+  #   valueFrom:
+  #     secretKeyRef:
+  #       key: database-password
+  #       name: tingg-bulkpurchase-credentials
