@@ -1,4 +1,4 @@
----
+{{if eq .Values.ambassador.enabled true}}
 apiVersion: getambassador.io/v2
 kind:  Mapping
 metadata:
@@ -10,3 +10,4 @@ spec:
   timeout_ms: {{ .Values.ambassador.timeoutMs }} 
   connect_timeout_ms: {{ .Values.ambassador.connectTimeoutms }}
   idle_timeout_ms: {{ .Values.ambassador.idleTimeoutms }}
+{{ end }}
