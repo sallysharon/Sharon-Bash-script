@@ -18,6 +18,11 @@ ambassador:
   connectTimeoutms: 30000
   idleTimeoutms: 3000
 
+tolerations:
+  - effect: NoSchedule
+    key: testing
+    operator: Exists
+
 # A map of additional environment variables
 extraVars: {}
   # test1: "test2"
