@@ -11,7 +11,7 @@ service:
 #Read more about this at the link below:
 #https://www.getambassador.io/docs/1.5/topics/using/timeouts/
 ambassador:
-  enabled: "true"
+  enabled: false
   hostname: cellulant.co.ke
   prefix: /
   timeoutMs: 3000 
