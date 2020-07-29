@@ -35,7 +35,7 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          {{- if .Values.livenessProbe.enabled }}              
+          {{if eq .Values.livenessProbe.enabled true}}            
           livenessProbe:
             httpGet:
               path: {{ .Values.livenessProbe.path }}
@@ -48,7 +48,7 @@ spec:
               port: http
             initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.readinessProbe.periodSeconds }} 
-          {{- end }}         
+          {{ end }}         
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

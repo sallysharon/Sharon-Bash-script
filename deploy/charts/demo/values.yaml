@@ -42,13 +42,12 @@ ambassador:
 
 ## The following settings are to configure the frequency of the liveness and readiness probes
 livenessProbe:
-  enabled: "true"
+  enabled: false
   initialDelaySeconds: 180
   periodSeconds: 60
   path: /actuator/health
 
 readinessProbe:
-  enabled: "true"
   initialDelaySeconds: 180
   periodSeconds: 60
   path: /actuator/health
