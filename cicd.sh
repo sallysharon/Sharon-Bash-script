@@ -116,6 +116,7 @@ for i in ./deploy/charts/demo/templates/*.yaml; do
     $SED 's@demo@'"$PROJECTNAME"'@g' $i
 done
 
+echo "phase2: cleaning up"
 cd ./deploy/charts
 mv demo $PROJECTNAME
 cd ../../
