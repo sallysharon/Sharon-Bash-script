@@ -133,7 +133,8 @@ $CICD_SED 's@demo@'"$CICD_PROJECTNAME"'@g' ./deploy/charts/demo/templates/_helpe
 
 echo "phase2: cleaning up"
 rm -f ./deploy/template.gitlab-ci.yml
-rm -f ./deploy/scripts
+rm -rf ./deploy/scripts
+rm -rf ./scripts
 cd ./deploy/charts
 mv demo $CICD_PROJECTNAME
 cd ../../
