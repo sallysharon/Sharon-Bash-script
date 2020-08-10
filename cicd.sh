@@ -74,6 +74,7 @@ mv .gitlab-ci.yml ../
 echo "phase1: cleaning up"
 rm -rf $EXT
 rm -rf ./deploy
+rm -f ./template.gitlab-ci.yml
 cd ../
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
