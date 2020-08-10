@@ -84,7 +84,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     echo "OS | '$OS'. sed | '$CICD_SED'. "
 elif [[ "$OSTYPE" == "darwin"* ]]; then
 	OS="darwin"
-    export CICD_SED="sed"
+    export CICD_SED="sed -i '.bak' -e"
     echo "OS | '$OS'. sed | '$CICD_SED'. "
 elif [[ "$OSTYPE" == "win32" ]] || [[ "$OSTYPE" == "cygwin" ]] || [[ "$OSTYPE" == "msys" ]] ; then
 	OS="windows"
