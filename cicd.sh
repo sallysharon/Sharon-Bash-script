@@ -28,14 +28,17 @@ do
         "docker")
             echo "$REPLY: $opt pipeline seclected."
             export PIPELINETYPESELECT=$opt
+            break
             ;;
         "jib-maven")
             echo "$REPLY: $opt pipeline seclected."
             export PIPELINETYPESELECT=$opt
+            break
             ;;
         "jib-gradle")
             echo "$REPLY: $opt pipeline seclected."
             export PIPELINETYPESELECT=$opt
+            break
             ;;
         *) echo "invalid option $REPLY";;
     esac
