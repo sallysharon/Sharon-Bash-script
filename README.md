@@ -14,8 +14,8 @@ For existing projects use the below migration script in your project root.
 bash <(curl -s https://eks-dtap-shared.s3.us-east-2.amazonaws.com/cicdscripts/cicd-migration.sh)
 ```
 
-## How the new Pipeline works
-# Deploying to Kubernetes with Helm
+# How the new Pipeline works
+## Deploying to Kubernetes with Helm
 
 [Helm](https://helm.sh/) is a popular Kubernetes package manager. To deploy to Kubernetes with Helm, you'll first need to [initialize it in your cluster](https://docs.helm.sh/using_helm#install-helm).
 
