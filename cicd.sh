@@ -62,7 +62,9 @@ echo "Setting Up CI/CD base project from $CICD_DOWNLOAD_URL"
 
 mkdir ./deploy
 cd ./deploy
-$CICD_OMMAND
+if ! $CICD_COMMAND; then
+    exit
+fi
 cd ./deploy
 
 echo ""
@@ -82,7 +84,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     echo "OS | '$OS'. sed | '$CICD_SED'. "
 elif [[ "$OSTYPE" == "darwin"* ]]; then
 	OS="darwin"
-    export CICD_SED="sed -i '' -e"
+    export CICD_SED="sed"
     echo "OS | '$OS'. sed | '$CICD_SED'. "
 elif [[ "$OSTYPE" == "win32" ]] || [[ "$OSTYPE" == "cygwin" ]] || [[ "$OSTYPE" == "msys" ]] ; then
 	OS="windows"
