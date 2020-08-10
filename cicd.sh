@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+
 CICD_GITLABFILE=./.gitlab-ci.yml
 if test -f "$CICD_GITLABFILE"; then
     echo "Pre-check run ..."
