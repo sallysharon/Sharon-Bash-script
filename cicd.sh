@@ -2,12 +2,14 @@
 set -e
 GITLABFILE=./.gitlab-ci.yml
 if test -f "$GITLABFILE"; then
+    echo "Pre-check run ..."
     echo "$GITLABFILE exists."
     exit
 fi
 
 DEPLOYDIR=./deploy/development.config
 if test -f "$DEPLOYDIR"; then
+    echo "Pre-check run ..."
     echo "Deploy directory exists."
     exit
 fi
@@ -69,24 +71,48 @@ mv * ../
 cd ../
 mv .gitlab-ci.yml ../
 
-echo "cleaning up"
+echo "phase1: cleaning up"
 rm -rf $EXT
 rm -rf ./deploy
 cd ../
 
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	OS="linux"
+    export SED='sed -i' 
+    echo "OS | '$OS'. sed | '$SED'. "
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+	OS="darwin"
+    export SED="sed -i '' -e"
+    echo "OS | '$OS'. sed | '$SED'. "
+elif [[ "$OSTYPE" == "win32" ]] || [[ "$OSTYPE" == "cygwin" ]] || [[ "$OSTYPE" == "msys" ]] ; then
+	OS="windows"
+	export SED='sed -i ' 
+    echo "OS | '$OS'. sed | '$SED'. "
+else
+	echo "No sed command available for OS '$OSTYPE'. using default."
+    export SED='sed -i '
+    echo "OS | '$OS'. sed | '$SED'. " 
+  exit
+fi
 
+
+echo "executing CI/CD config"
 #configure gitlab yml
-sed -i 's@PROJECT@'"$PROJECTNAME"'@g' ./.gitlab-ci.yml
-sed -i 's@GROUP@'"$PROJECTGROUP"'@g' ./.gitlab-ci.yml
-sed -i 's@PIPELINETYPE@'"$PIPELINETYPESELECT"'@g' ./.gitlab-ci.yml
+$SED 's@PROJECT@'"$PROJECTNAME"'@g' ./.gitlab-ci.yml
+$SED 's@GROUP@'"$PROJECTGROUP"'@g' ./.gitlab-ci.yml
+$SED 's@PIPELINETYPE@'"$PIPELINETYPESELECT"'@g' ./.gitlab-ci.yml
 
 #configure config variables
-sed -i 's@PROJECT@'"$PROJECTNAME"'@g' ./deploy/*.config
-sed -i 's@GROUP@'"$PROJECTGROUP"'@g' ./deploy/*.config
+$SED 's@PROJECT@'"$PROJECTNAME"'@g' ./deploy/*.config
+$SED 's@GROUP@'"$PROJECTGROUP"'@g' ./deploy/*.config
 
 #configure helm chart variables
-for i in ./deploy/charts/demo/*; do
-    sed -i 's@demo@'"$PROJECTNAME"'@g' $i
+for i in ./deploy/charts/demo/*.yaml; do
+    $SED 's@demo@'"$PROJECTNAME"'@g' $i
+done
+
+for i in ./deploy/charts/demo/templates/*.yaml; do
+    $SED 's@demo@'"$PROJECTNAME"'@g' $i
 done
 
 cd ./deploy/charts
