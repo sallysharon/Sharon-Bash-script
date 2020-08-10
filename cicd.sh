@@ -84,7 +84,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     echo "OS | '$OS'. sed | '$CICD_SED'. "
 elif [[ "$OSTYPE" == "darwin"* ]]; then
 	OS="darwin"
-    export CICD_SED="sed -i '.bak' -e"
+    export CICD_SED="sed -i .cicdbak -e"
     echo "OS | '$OS'. sed | '$CICD_SED'. "
 elif [[ "$OSTYPE" == "win32" ]] || [[ "$OSTYPE" == "cygwin" ]] || [[ "$OSTYPE" == "msys" ]] ; then
 	OS="windows"
@@ -96,6 +96,16 @@ else
     echo "OS | '$OS'. sed | '$CICD_SED'. " 
   exit
 fi
+
+clean_backups() {
+  echo "phase3: cleaning up"
+  if find . -name "*.cicdbak" -type f 1> /dev/null 2>&1; then
+      echo "Found .cicdbak files"
+      find . -name "*.cicdbak" -type f -delete
+  else
+     echo "Nothing to do no back up files found..."
+  fi
+}
 
 
 echo "executing CI/CD config"
@@ -126,6 +136,8 @@ rm -f ./deploy/cicd.sh
 cd ./deploy/charts
 mv demo $CICD_PROJECTNAME
 cd ../../
+
+clean_backups
 
 echo ""
 echo "CI/CD template successfully installed to project"
