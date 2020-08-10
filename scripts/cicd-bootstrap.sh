@@ -98,17 +98,6 @@ else
   exit
 fi
 
-clean_backups() {
-  echo "phase3: cleaning up"
-  if find . -name "*.cicdbak" -type f 1> /dev/null 2>&1; then
-      echo "Found .cicdbak files"
-      find . -name "*.cicdbak" -type f -delete
-  else
-     echo "Nothing to do no back up files found..."
-  fi
-}
-
-
 echo "executing CI/CD config"
 #configure gitlab yml
 $CICD_SED 's@PROJECTNAME@'"$CICD_PROJECTNAME"'@g' ./.gitlab-ci.yml
@@ -130,6 +119,17 @@ for i in ./deploy/charts/demo/templates/*.yaml; do
 done
 $CICD_SED 's@demo@'"$CICD_PROJECTNAME"'@g' ./deploy/charts/demo/templates/tests/*.yaml
 $CICD_SED 's@demo@'"$CICD_PROJECTNAME"'@g' ./deploy/charts/demo/templates/_helpers.tpl
+
+
+clean_backups() {
+  echo "phase3: cleaning up"
+  if find . -name "*.cicdbak" -type f 1> /dev/null 2>&1; then
+      echo "Found .cicdbak files"
+      find . -name "*.cicdbak" -type f -delete
+  else
+     echo "Nothing to do no back up files found..."
+  fi
+}
 
 echo "phase2: cleaning up"
 rm -f ./deploy/template.gitlab-ci.yml
