@@ -1,4 +1,4 @@
-# getting-started
+# Getting-started
 
 To get your project setup run the bellow script on your local:
 
