@@ -100,13 +100,14 @@ fi
 
 echo "executing CI/CD config"
 #configure gitlab yml
-$CICD_SED 's@PROJECT@'"$CICD_PROJECTNAME"'@g' ./.gitlab-ci.yml
-$CICD_SED 's@GROUP@'"$CICD_PROJECTGROUP"'@g' ./.gitlab-ci.yml
+$CICD_SED 's@PROJECTNAME@'"$CICD_PROJECTNAME"'@g' ./.gitlab-ci.yml
+$CICD_SED 's@GROUPNAME@'"$CICD_PROJECTGROUP"'@g' ./.gitlab-ci.yml
 $CICD_SED 's@PIPELINETYPE@'"$CICD_PIPELINETYPESELECT"'@g' ./.gitlab-ci.yml
 
 #configure config variables
-$CICD_SED 's@PROJECT@'"$CICD_PROJECTNAME"'@g' ./deploy/*.config
-$CICD_SED 's@GROUP@'"$CICD_PROJECTGROUP"'@g' ./deploy/*.config
+$CICD_SED 's@PROJECTNAME@'"$CICD_PROJECTNAME"'@g' ./deploy/*.config
+$CICD_SED 's@GROUPNAME@'"$CICD_PROJECTGROUP"'@g' ./deploy/*.config
+$CICD_SED 's@demo@'"$CICD_PROJECTNAME"'@g' ./deploy/*.config
 
 #configure helm chart variables
 for i in ./deploy/charts/demo/*.yaml; do
