@@ -98,28 +98,31 @@ else
   exit
 fi
 
-echo "executing CI/CD config"
-#configure gitlab yml
-$CICD_SED 's@CICDPROJECTNAME@'"$CICD_PROJECTNAME"'@g' ./.gitlab-ci.yml
-$CICD_SED 's@CICDGROUPNAME@'"$CICD_PROJECTGROUP"'@g' ./.gitlab-ci.yml
-$CICD_SED 's@CICDPIPELINETYPE@'"$CICD_PIPELINETYPESELECT"'@g' ./.gitlab-ci.yml
+sed_commands() {
+    echo "executing CI/CD config"
+    #configure gitlab yml
+    $CICD_SED 's@CICDPROJECTNAME@'"$CICD_PROJECTNAME"'@g' ./.gitlab-ci.yml
+    $CICD_SED 's@CICDGROUPNAME@'"$CICD_PROJECTGROUP"'@g' ./.gitlab-ci.yml
+    $CICD_SED 's@CICDPIPELINETYPE@'"$CICD_PIPELINETYPESELECT"'@g' ./.gitlab-ci.yml
 
-#configure config variables
-$CICD_SED 's@CICDPROJECTNAME@'"$CICD_PROJECTNAME"'@g' ./deploy/*.config
-$CICD_SED 's@CICDGROUPNAME@'"$CICD_PROJECTGROUP"'@g' ./deploy/*.config
-$CICD_SED 's@demo@'"$CICD_PROJECTNAME"'@g' ./deploy/*.config
+    #configure config variables
+    $CICD_SED 's@CICDPROJECTNAME@'"$CICD_PROJECTNAME"'@g' ./deploy/*.config
+    $CICD_SED 's@CICDGROUPNAME@'"$CICD_PROJECTGROUP"'@g' ./deploy/*.config
+    $CICD_SED 's@demo@'"$CICD_PROJECTNAME"'@g' ./deploy/*.config
 
-#configure helm chart variables
-for i in ./deploy/charts/demo/*.yaml; do
-    $CICD_SED 's@demo@'"$CICD_PROJECTNAME"'@g' $i
-done
+    #configure helm chart variables
+    for i in ./deploy/charts/demo/*.yaml; do
+        $CICD_SED 's@demo@'"$CICD_PROJECTNAME"'@g' $i
+    done
 
-for i in ./deploy/charts/demo/templates/*.yaml; do
-    $CICD_SED 's@demo@'"$CICD_PROJECTNAME"'@g' $i
-done
-$CICD_SED 's@demo@'"$CICD_PROJECTNAME"'@g' ./deploy/charts/demo/templates/tests/*.yaml
-$CICD_SED 's@demo@'"$CICD_PROJECTNAME"'@g' ./deploy/charts/demo/templates/_helpers.tpl
+    for i in ./deploy/charts/demo/templates/*.yaml; do
+        $CICD_SED 's@demo@'"$CICD_PROJECTNAME"'@g' $i
+    done
+    $CICD_SED 's@demo@'"$CICD_PROJECTNAME"'@g' ./deploy/charts/demo/templates/tests/*.yaml
+    $CICD_SED 's@demo@'"$CICD_PROJECTNAME"'@g' ./deploy/charts/demo/templates/_helpers.tpl
+}
 
+sed_commands
 
 clean_backups() {
   echo "phase3: cleaning up"
