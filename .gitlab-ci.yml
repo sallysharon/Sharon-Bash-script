@@ -10,6 +10,6 @@ variables:
 
   #TYPE OF PIPELINE 
   # docker OR jib-maven OR jib-gradle
-  PIPELINETYPE: ""
-  PROJECT: demo
-  IMG_REPO: ""
+  PIPELINETYPE: "PIPELINETYPE"
+  PROJECT: PROJECT
+  IMG_REPO: "GROUP/PROJECT"
