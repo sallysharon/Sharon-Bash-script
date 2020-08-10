@@ -98,7 +98,7 @@ else
   exit
 fi
 
-sed_commands() {
+sed_engine() {
     echo "executing CI/CD config"
     #configure gitlab yml
     $CICD_SED 's@CICDPROJECTNAME@'"$CICD_PROJECTNAME"'@g' ./.gitlab-ci.yml
@@ -122,7 +122,7 @@ sed_commands() {
     $CICD_SED 's@demo@'"$CICD_PROJECTNAME"'@g' ./deploy/charts/demo/templates/_helpers.tpl
 }
 
-sed_commands
+sed_engine
 
 clean_backups() {
   echo "phase3: cleaning up"
