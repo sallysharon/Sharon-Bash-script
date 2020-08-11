@@ -3,12 +3,12 @@
   "dependencies": {
     "express": "^4.16.1"
   },
-  "description": "Example app deployment with rok8s-scripts",
+  "description": "Example app deployment with cell ci/cd",
   "license": "Apache-2.0",
-  "name": "rok8s-minimal-sops-example",
+  "name": "minimal-sops-example",
   "repository": {
     "type": "git",
-    "url": "+https://github.com/FairwindsOps/rok8s-scripts.git"
+    "url": "+https://git.prod.cellulant.com/ops-templates/ci-cd-workflows/rok8s-scripts/getting-started.git"
   },
   "scripts": {
     "start": "node server.js"

@@ -22,7 +22,7 @@ To access encrypted secrets, users or CI need access to both your Git repository
 
 cell CI/CD expects secret files to include the `.secret.sops.yml` extension. In your cell CI/CD configuration file, set the `SOPS_SECRETS` variable to a list of secret files, **not including the extension**. For example: `SOPS_SECRETS=('production/minimal-sops-production')`
 
-An [example of sops usage with cell CI/CD can be found here](/examples/minimal-sops-secrets).
+An [example of sops usage with cell CI/CD can be found here](https://git.prod.cellulant.com/ops-templates/ci-cd-workflows/rok8s-scripts/getting-started/tree/master/docs/examples/minimal-sops-secrets).
 
 ### Specifying Multiple Secrets Files
 

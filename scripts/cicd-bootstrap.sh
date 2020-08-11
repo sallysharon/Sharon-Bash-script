@@ -138,6 +138,8 @@ echo "phase2: cleaning up"
 rm -f ./deploy/template.gitlab-ci.yml
 rm -rf ./deploy/scripts
 rm -rf ./scripts
+rm -rf ./deploy/docs
+rm -rf ./docs
 cd ./deploy/charts
 mv demo $CICD_PROJECTNAME
 cd ../../

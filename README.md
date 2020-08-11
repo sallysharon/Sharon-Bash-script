@@ -80,7 +80,7 @@ somevalue: anothervalue
 ```
 
 ## Secret Management
-Helm stores release information in Config Maps. If we deployed Kubernetes Secrets with Helm, they'd also be visible in that Helm release Config Map. To avoid that, we manage secrets separately. Please see [Managing Kubernetes Secrets Securely](docs/secrets.md) for further information.
+Helm stores release information in Config Maps. If we deployed Kubernetes Secrets with Helm, they'd also be visible in that Helm release Config Map. To avoid that, we manage secrets separately. Please see [Managing Kubernetes Secrets Securely](https://git.prod.cellulant.com/ops-templates/ci-cd-workflows/rok8s-scripts/getting-started/blob/master/docs/secrets.md) for further information.
 
 ## Deploying it All
 This step assumes that you've already configured access to your cluster in your pipeline.
