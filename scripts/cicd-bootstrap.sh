@@ -8,6 +8,13 @@ if test -f "$CICD_GITLABFILE"; then
     exit
 fi
 
+CICD_CHARTSDIR=./charts
+if test -f "$CICD_GITLABFILE"; then
+    echo "Pre-check run ..."
+    echo "$CICD_GITLABFILE exists."
+    exit
+fi
+
 CICD_DEPLOYDIR=./deploy/development.config
 if test -f "$CICD_DEPLOYDIR"; then
     echo "Pre-check run ..."
