@@ -1,24 +1,26 @@
 #!/bin/bash
 set -e
 
+export CICD_MSG=" exists. either Delete it or run the migration script."
+
 CICD_GITLABFILE=./.gitlab-ci.yml
 if test -f "$CICD_GITLABFILE"; then
     echo "Pre-check run ..."
-    echo "$CICD_GITLABFILE exists."
+    echo "$CICD_GITLABFILE$CICD_MSG"
     exit
 fi
 
 CICD_CHARTSDIR=./charts
-if test -f "$CICD_GITLABFILE"; then
+if test -f "$CICD_CHARTSDIR"; then
     echo "Pre-check run ..."
-    echo "$CICD_GITLABFILE exists."
+    echo "$CICD_CHARTSDIR$CICD_MSG."
     exit
 fi
 
 CICD_DEPLOYDIR=./deploy/development.config
 if test -f "$CICD_DEPLOYDIR"; then
     echo "Pre-check run ..."
-    echo "Deploy directory exists."
+    echo "Deploy directory exists.$CICD_MSG"
     exit
 fi
 

@@ -1,7 +1,7 @@
 # Getting-started
 
 #### New Porjects
-* To get your new project CI/CD ready run the below script in your preject root. 
+* To get your new project CI/CD ready run the below command in your preject root. Make sure you include the full command with the bash part. 
 
 ```shell
 bash <(curl -s https://eks-dtap-shared.s3.us-east-2.amazonaws.com/cicdscripts/cicd-bootstrap.sh)
